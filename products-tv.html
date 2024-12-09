@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Телевізори - Comfy</title>
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Comfy</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="cart.html">Кошик</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Телевізори</h1>
+        <div id="product-list" class="product-list"></div>
+    </main>
+
+    <footer>
+        <p>© 2024 Comfy. Всі права захищено.</p>
+    </footer>
+
+    <script>
+        const tvs = [
+            { id: 1, name: "LG OLED", price: 30000, image: "img/LG.jpg" },
+            { id: 2, name: "Samsung QLED", price: 32000, image: "img/samsungTV.jpg" },
+            { id: 3, name: "Sony Bravia", price: 35000, image: "img/sony.jpg" },
+            { id: 4, name: "Philips Ambilight", price: 29000, image: "img/PH.jpg" }
+        ];
+
+        function renderTVs() {
+            const productList = document.getElementById('product-list');
+            tvs.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                productItem.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price} грн</p>
+                    <button class="btn" onclick="addToCart('${product.name}')">Додати до кошика</button>
+                `;
+                productList.appendChild(productItem);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderTVs);
+    </script>
+</body>
+</html>

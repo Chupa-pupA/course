@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Смартфони - Comfy</title>
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Comfy</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="cart.html">Кошик</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Смартфони</h1>
+        <div id="product-list" class="product-list"></div>
+    </main>
+
+    <footer>
+        <p>© 2024 Comfy. Всі права захищено.</p>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: "Samsung Galaxy", price: 20000, image: "img/1111.jpg" },
+            { id: 2, name: "iPhone 12", price: 30000, image : "img/apple_iphone_12.jpg" },
+            { id: 3, name: "Xiaomi Redmi", price: 15000, image: "img/redmi.webp" },
+            { id: 4, name: "Huawei P30", price: 18000, image: "img/HUAWEI1.jpg" }
+        ];
+
+        function renderProducts() {
+            const productList = document.getElementById('product-list');
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                productItem.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price} грн</p>
+                    <button class="btn" onclick="addToCart('${product.name}')">Додати до кошика</button>
+                `;
+                productList.appendChild(productItem);
+            });
+        }
+
+        function addToCart(productName) {
+            alert(`Товар "${productName}" додано до кошика!`);
+        }
+
+        document.addEventListener('DOMContentLoaded', renderProducts);
+    </script>
+</body>
+</html>

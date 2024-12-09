@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ноутбуки - Comfy</title>
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Comfy</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="cart.html">Кошик</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Ноутбуки</h1>
+        <div id="product-list" class="product-list"></div>
+    </main>
+
+    <footer>
+        <p>© 2024 Comfy. Всі права захищено.</p>
+    </footer>
+
+    <script>
+        const laptops = [
+            { id: 1, name: "Dell XPS 13", price: 40000, image: "img/Dell.jpg" },
+            { id: 2, name: "MacBook Air", price: 50000, image: "img/macbookair.png" },
+            { id: 3, name: "HP Spectre", price: 45000, image: "img/HP.jpg" },
+            { id: 4, name: "Lenovo ThinkPad", price: 38000, image: "img/lenovo.webp" }
+        ];
+
+        function renderLaptops() {
+            const productList = document.getElementById('product-list');
+            laptops.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                productItem.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price} грн</p>
+                    <button class="btn" onclick="addToCart('${product.name}')">Додати до кошика</button>
+                `;
+                productList.appendChild(productItem);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderLaptops);
+    </script>
+</body>
+</html>
