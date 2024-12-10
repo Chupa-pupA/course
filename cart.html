@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кошик - Comfy</title>
     <link rel="stylesheet" href="style4.css">
-    <script src="jsCART.js"></script> 
 </head>
 <body>
     <header>
@@ -15,7 +14,7 @@
                 <ul>
                     <li><a href="index.html">Головна</a></li>
                     <li><a href="catalog.html">Каталог</a></li>
-                    <li><a href="cart.html">Кошик</a></li>
+                    <li><a href="cart.html" class="active">Кошик</a></li>
                     <li><a href="contacts.html">Контакти</a></li>
                 </ul>
             </nav>
@@ -23,16 +22,54 @@
     </header>
 
     <main>
-        <h1>Кошик</h1>
+        <h1>Ваш кошик</h1>
         <ul id="cart-list"></ul>
         <p id="cart-total">Загальна сума: 0 грн</p>
-        <button class="btn" onclick="clearCart()">Очистити кошик</button>
+        <button onclick="clearCart()">Очистити кошик</button>
     </main>
 
     <footer>
         <p>© 2024 Comfy. Всі права захищено.</p>
     </footer>
 
-    
+    <script>
+        
+        function renderCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartList = document.getElementById("cart-list");
+    const cartTotal = document.getElementById("cart-total");
+    cartList.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+        const cartItem = document.createElement("li");
+        cartItem.classList.add("cart-item");
+
+        cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+            <div class="cart-item-info">
+                <span class="cart-item-name">${item.name}</span> - 
+                <span class="cart-item-price">${item.price} грн</span> x 
+                <span class="cart-item-quantity">${item.quantity}</span>
+            </div>
+        `;
+
+        cartList.appendChild(cartItem);
+        total += item.price * item.quantity;
+    });
+
+    cartTotal.textContent = `Загальна сума: ${total} грн`;
+}
+
+
+        function clearCart() {
+            localStorage.removeItem('cart'); 
+            renderCart(); 
+            alert("Кошик очищено!");
+        }
+
+       
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
 </body>
 </html>
