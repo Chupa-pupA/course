@@ -114,9 +114,6 @@ footer {
 
 
 
-
-
-
 #cart-list {
     list-style-type: none;
     padding: 0;
@@ -131,9 +128,10 @@ footer {
 }
 
 .cart-item img {
-    width: 50px;
-    height: 50px;
+    width: 60px; 
+    height: 60px;
     margin-right: 15px;
+    border-radius: 5px;
 }
 
 .cart-item-name {
